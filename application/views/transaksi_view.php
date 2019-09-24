@@ -27,7 +27,7 @@
                 <tbody>
                     <tr>
                         <th colspan="2">Total Harga</th>
-                        <th>Rp. </th>
+                        <th id="totalHarga">Rp. </th>
                     </tr>
                 </tbody>
             </table>

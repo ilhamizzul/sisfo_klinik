@@ -41,23 +41,21 @@
 						'<td class="col-md-2">'+
 							// '<input id="'+data.id_obat+'Val" type="number" onkeyup="sum_value('+ $("#" + data.id_obat + "Val").val() +')" value="1" max="'+data.sisa_stok+'">'+
 							// '<input id="'+data.id_obat+'Val" type="number" onkeypress="sum_value()" value="1" max="'+data.sisa_stok+'">'+
-							'<input id="'+data.id_obat+'Val" type="number" onkeyup="sum_value(\'#'+data.id_obat+'Val\','+data+' )" min="1" value="1" max="'+data.sisa_stok+'">'+
+							'<input id="'+data.id_obat+'Val" type="number" onchange="sum_value(\'#'+data.id_obat+'Val\','+data.harga_jual+' )" min="0" value="0" max="'+data.sisa_stok+'">'+
 						'</td>'+
 						'<td class="col-md-4" id="price'+data.id_obat+'">' + data.harga_jual + '</td>'+
 					'</tr>'
 				);
 				$('#'+data.id_obat+'').attr("disabled", true);
-
+				sum_value('#'+data.id_obat+'',data.harga_jual);
 			}
 		})
 	}
 
-	function sum_value(id, data) {
-		// console.log(count + 1);
-		
+	function sum_value(id, harga_jual) {
 		var count = $(id).val();
-		var sum = count * data.harga_jual;
-		$('#price'+data.id_obat).text(sum);
+		var sum = count * harga_jual;
+		$('#totalHarga').text('Rp. '+sum);
 		
 
 	}
