@@ -69,6 +69,41 @@ class Data_pasien extends CI_Controller {
 		$this->load->view('index', $data);
 	}
 
+	public function get_nota()
+	{
+		$output = '';
+		$query = '';
+		if ($this->input->post('query')) {
+			$query = $this->input->post('query');
+		}
+		$data = $this->data_pemeriksaan_pasien_model->get_transaction_note($query);
+		// $date = date_format($data[1]->waktu_transaksi,'%D').'/'. 
+		// 		date_format($data[1]->waktu_transaksi,'%M').'/'. 
+		// 		date_format($data[1]->waktu_transaksi,'%Y');
+
+		$output .= '
+		<h5 style="margin-top:-30px">'.$data[1]->waktu_transaksi.'</h5>
+		<table class="display table table-bordered">
+                        <tr>
+                            <th>Nama Item</th>
+                            <th>Jumlah Item</th>
+                            <th>Harga</th>
+                        </tr>';
+        foreach ($data[0] as $row) {
+        	$output .= '<tr>
+        					<td>'.$row->rincian_obat.'</td>
+        					<td>'.$row->jumlah.'</td>
+        					<td>Rp. '.$row->harga.'</td>
+        				</tr>';
+        }
+        $output .= '<tr>
+                        <th colspan="2">Total Harga</th>
+                        <th>Rp.'.$data[1]->harga_total.'</th>
+                    </tr>
+                </table>';
+		echo $output;        
+	}
+
 	public function get_data_pemeriksaan_pasien_by_id($id)
 	{
 		$data_pemeriksaan_pasien = $this->data_pemeriksaan_pasien_model->get_data_pemeriksaan_pasien_by_id($id);
