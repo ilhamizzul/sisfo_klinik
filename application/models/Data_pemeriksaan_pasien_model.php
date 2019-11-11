@@ -72,6 +72,24 @@ class Data_pemeriksaan_pasien_model extends CI_Model {
 		
 	}
 
+	public function edit_data_pemeriksaan_pasien($id)
+	{
+		$data = array(
+			'hasil_pemeriksaan' => $this->input->post('hasil_pemeriksaan'),
+			'diagnosis' => $this->input->post('diagnosis'),
+			'terapi' => $this->input->post('terapi')
+		);
+
+		$this->db->where('id_pemeriksaan', $id)->update('tb_pemeriksaan', $data);
+
+		if ($this->db->affected_rows() > 0) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+		
+	}
+
 }
 
 /* End of file data_pemeriksaan_pasien_model.php */

@@ -77,9 +77,6 @@ class Data_pasien extends CI_Controller {
 			$query = $this->input->post('query');
 		}
 		$data = $this->data_pemeriksaan_pasien_model->get_transaction_note($query);
-		// $date = date_format($data[1]->waktu_transaksi,'%D').'/'. 
-		// 		date_format($data[1]->waktu_transaksi,'%M').'/'. 
-		// 		date_format($data[1]->waktu_transaksi,'%Y');
 
 		$output .= '
 		<h5 style="margin-top:-30px">'.$data[1]->waktu_transaksi.'</h5>
@@ -129,6 +126,18 @@ class Data_pasien extends CI_Controller {
 			redirect('data_pasien/data_pemeriksaan_pasien/'.$id_pasien.'/'.$nama_pasien);
 		} else {
 			$this->session->set_flashdata('failed', 'Data Pemeriksaan Gagal Dihapus, Silahkan Coba Lagi atau Segera Hubungi Developer');
+			redirect('data_pasien/data_pemeriksaan_pasien/'.$id_pasien.'/'.$nama_pasien);
+		}
+		
+	}
+
+	public function edit_data_pemeriksaan($id_pemeriksaan, $id_pasien, $nama_pasien)
+	{
+		if ($this->data_pemeriksaan_pasien_model->edit_data_pemeriksaan_pasien($id_pemeriksaan) == TRUE) {
+			$this->session->set_flashdata('success', 'Data Pemeriksaan Berhasil Diubah');
+			redirect('data_pasien/data_pemeriksaan_pasien/'.$id_pasien.'/'.$nama_pasien);
+		} else {
+			$this->session->set_flashdata('failed', 'Data Pemeriksaan Gagal Diubah, Silahkan Coba Lagi atau Hubungi Developer');
 			redirect('data_pasien/data_pemeriksaan_pasien/'.$id_pasien.'/'.$nama_pasien);
 		}
 		

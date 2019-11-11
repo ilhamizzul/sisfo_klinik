@@ -5,12 +5,55 @@ class Data_obat_model extends CI_Model {
 
 	public function get_data_obat()
 	{
-		return $this->db->select('tb_obat.id_obat, nama_obat, harga_jual, harga_beli, sisa_stok')
+		return $query = $this->db->select('tb_obat.id_obat, nama_obat, harga_jual, harga_beli, sisa_stok')
 						->join('tb_stok_obat', 'tb_stok_obat.id_obat = tb_obat.id_obat')
 						->where("DATE_FORMAT(bulan,'%Y-%m')", date('Y-m'))
 						->get('tb_obat')
 						->result();
+		// if ($query->num_rows() > 0) {
+		// 	return $query;
+		// } else {
+		// 	$this->recap_stock_obat();
+		// 	return $query;
+		// 	// return 'gaada';
+		// }
 	}	
+
+	public function recap_stock_obat()
+	{
+		$id_obat = $this->db->select('id_obat')
+							->from('tb_obat')
+							->where('id_obat !=', '')
+							->get()->result();	
+		$total_obat = $this->db->select('count(id_obat) as total_obat')
+								->from('tb_obat')
+								->where('id_obat !=', '')
+								->get()->row();	
+		$i = 0;
+		foreach ($id_obat as $data) {
+			$stock = $this->get_last_month_stok_obat_by_id($id_obat[$i]->id_obat);
+			$recap = array(
+				'id_obat' 		=> $id_obat[$i]->id_obat, 
+				'bulan' 		=> date('Y-m-d'), 
+				'stok_masuk' 	=> '0', 
+				'sisa_stok'		=> $stock->sisa_stok, 
+				'stok_keluar' 	=> '0'  
+			);
+			$this->db->insert('tb_stok_obat', $recap);
+			$i++;	
+		}
+		
+	}
+
+	
+	public function get_last_month_stok_obat_by_id($id_obat)
+	{
+		return $this->db->select('stok_masuk, sisa_stok, bulan')
+						->where('id_obat', $id_obat)
+						->where("DATE_FORMAT(bulan,'%Y-%m')", date('Y-m', strtotime('-1 month')))
+						->get('tb_stok_obat')
+						->row();
+	}
 
 	public function get_data_obat_by_id($id_obat)
 	{
@@ -30,6 +73,7 @@ class Data_obat_model extends CI_Model {
 						->get('tb_stok_obat')
 						->row();
 	}
+
 
 	public function tambah_data_obat()
 	{
@@ -89,17 +133,18 @@ class Data_obat_model extends CI_Model {
 			$this->db->where('id_obat', $id_obat)
 					->where("DATE_FORMAT(bulan,'%Y-%m')", date('Y-m'))
 					->update('tb_stok_obat', $data_stock);
-		} else {
-			$data_stock = array(
-				'id_obat' 		=> $id_obat, 
-				'bulan' 		=> date('Y-m-d'), 
-				'stok_masuk' 	=> $this->input->post('stok_masuk'), 
-				'stok_sisa'		=> $this->input->post('stok_masuk'), 
-				'stok_keluar' 	=> '0'  
-			);
+		} 
+		// else {
+		// 	$data_stock = array(
+		// 		'id_obat' 		=> $id_obat, 
+		// 		'bulan' 		=> date('Y-m-d'), 
+		// 		'stok_masuk' 	=> $this->input->post('stok_masuk'), 
+		// 		'sisa_stok'		=> $this->input->post('stok_masuk'), 
+		// 		'stok_keluar' 	=> '0'  
+		// 	);
 
-			$this->db->insert('tb_stok_obat', $data_stock);
-		}
+		// 	$this->db->insert('tb_stok_obat', $data_stock);
+		// }
 		//END
 
 		if ($this->db->affected_rows() > 0) {

@@ -122,24 +122,18 @@
                 <center>
                     <div class="panel panel-modal">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Edit Data Pasien</h3>
+                            <h3 class="panel-title">Edit Data Pemeriksaan</h3>
                         </div>
                         <div class="panel-body">
-                            <form class="form-edit" method="POST" action="<?php echo base_url() ?>data_pasien/edit_pasien/">
+                            <form class="form-tambah" method="POST" action="<?php echo base_url() ?>data_pasien/tambah_data_pemeriksaan/<?php echo $this->uri->segment(3) ?>/<?php echo $this->uri->segment(4) ?>">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" required id="nama_pasien" name="nama_pasien" placeholder="Nama Pasien. . ." value="">
-                                </div>
-                                <div class="form-group">
-                                    <textarea style="resize:vertical" class="form-control" placeholder="Alamat Pasien. . ." id="alamat" name="alamat" rows="4"></textarea>
-                                </div>
-                                <div class="form-group col-md-6" style="padding-left: 0px">
-                                    <input type="text" class="form-control" required id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir. . ." value="">
-                                </div>
-                                <div class="form-group col-md-6" style="padding-right: 0px">
-                                    <input type="date" class="form-control" required id="tanggal_lahir" name="tanggal_lahir" placeholder="Tanggal Lahir. . ." value="">
+                                    <textarea style="resize:vertical" class="form-control" id="hasil_pemeriksaan" placeholder="Hasil Pemeriksaan. . ." name="hasil_pemeriksaan" rows="4"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" required id="nama_kepala_keluarga" name="nama_kepala_keluarga" placeholder="Nama Kepala Keluarga. . ." value="">
+                                    <textarea style="resize:vertical" class="form-control" id="diagnosis" placeholder="Diagnosis. . ." name="diagnosis" rows="4"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <textarea style="resize:vertical" class="form-control" id="terapi" placeholder="Terapi. . ." name="terapi" rows="4"></textarea>
                                 </div>
                             </form>
                         </div>
@@ -148,7 +142,7 @@
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-danger" data-dismiss="modal">Cancel</a>
-                <input type="button" value="TAMBAH" class="btn btn-default" id="edit_data_pasien">
+                <a href="" id="edit_data_pemeriksaan" class="btn btn-danger">UBAH</a>
             </div>
         </div>
     </div>

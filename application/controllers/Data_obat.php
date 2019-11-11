@@ -14,8 +14,26 @@ class Data_obat extends CI_Controller {
 	{
 		$data['main_view'] = 'data_obat_view';
 		$data['JSON'] = 'JSON/data_obat_JSON';
-		$data['data_obat'] = $this->data_obat_model->get_data_obat();
+		if ($this->data_obat_model->get_data_obat() == NULL) {
+			if ($this->data_obat_model->recap_stock_obat() == TRUE) {
+				$data['data_obat'] = $this->data_obat_model->get_data_obat();	
+			} else {
+				var_dump('error');
+			}
+		} else {
+			$data['data_obat'] = $this->data_obat_model->get_data_obat();
+		}
+		
+			
+		
+		
 		$this->load->view('index', $data);	
+		// $id_obat = $this->db->select('id_obat')->from('tb_obat')->where('id_obat !=', '')->get()->result();	
+		// var_dump(date('Y-m', strtotime('-1 month')));
+		// $stock = $this->data_obat_model->get_last_month_stok_obat_by_id('ait');
+		// var_dump($stock->sisa_stok);
+		// var_dump($data['data_obat']);
+		// var_dump($id_obat);
 	}
 
 	public function detail_obat($id_obat, $nama_obat)

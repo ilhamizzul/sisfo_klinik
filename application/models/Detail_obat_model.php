@@ -29,6 +29,7 @@ class Detail_obat_model extends CI_Model {
 						->where('id_obat', $id_obat)
 						->where('DATE_FORMAT(bulan,'.'"%Y"'.')', $tahun)
 						->group_by('DATE_FORMAT(bulan,'.'"%M"'.')')
+						->order_by("bulan", 'desc')
 						->get('tb_stok_obat')
 						->result();
 	}
