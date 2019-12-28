@@ -33,7 +33,7 @@
                                                     <td>
                                                         <a data-toggle="modal" style="width:100%" data-target="#modalEdit" onclick="edit_data_obat(\''.$data->id_obat.'\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
                                                         <a data-toggle="modal" style="width:100%" data-target="#modalTambahStok" onclick="add_stock(\''.$data->id_obat.'\')" class="btn btn-xs btn-info"><i class="fa fa-plus"></i></a>
-                                                        <a data-toggle="modal" style="width:100%" data-target="#modalHapus" onclick="delete_pemeriksaan('.$data->id_obat.')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
+                                                        <a data-toggle="modal" style="width:100%" data-target="#modalHapus" onclick="delete_data_obat(\''.$data->id_obat.'\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             ';
@@ -59,12 +59,12 @@
                 <center>
                 <h4>
                     Apakah Anda Yakin? <br>
-                    Semua Data Pasien yang Berada dalam Sistem Informasi Ini Juga Akan Hilang
+                    Semua Data Transaksi yang Berkaitan dengan Data Obat dalam Sistem Informasi Ini Juga Akan Hilang
                 </h4>
                 </center>
             </div>
             <div class="modal-footer">
-                <a href="" id="delete_data_pasien" class="btn btn-danger">YA</a>
+                <a href="" id="delete_data_obat" class="btn btn-danger">YA</a>
                 <a href="" class="btn btn-default" data-dismiss="modal">TIDAK</a>
             </div>
         </div>

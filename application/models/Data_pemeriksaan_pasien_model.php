@@ -37,9 +37,10 @@ class Data_pemeriksaan_pasien_model extends CI_Model {
 
 	public function get_transaction_note($id)
 	{
-		$query1 =  $this->db->select('harga_total, rincian_obat, jumlah, harga')
+		$query1 =  $this->db->select('nama_obat, harga_jual, harga_total, rincian_obat, jumlah, harga')
 				->from('tb_transaksi')
 				->join('tb_detail_transaksi', 'tb_detail_transaksi.id_transaksi = tb_transaksi.id_transaksi')
+				->join('tb_obat', 'tb_obat.id_obat = tb_detail_transaksi.id_obat')
 				->where('id_pemeriksaan', $id)
 				->get()
 				->result();

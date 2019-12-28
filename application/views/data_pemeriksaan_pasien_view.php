@@ -157,7 +157,7 @@
             </div>
             <div class="modal-body panel-body">
                 <center>
-                    <div class="panel panel-modal">
+                    <div class="panel panel-modal print-container">
                         <div class="panel-heading">
                             <h3 class="panel-title">Nota Transaksi Pasien</h3>
                             <h4><span class="label label-success"><b><?php echo urldecode($nama_pasien) ?></b></span></h4>
@@ -170,7 +170,7 @@
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-danger" data-dismiss="modal">Cancel</a>
-                <input type="button" value="PRINT" class="btn btn-default" id="edit_data_pasien">
+                <button type="button" onclick="window.print();" class="btn btn-default">PRINT</button>
             </div>
         </div>
     </div>

@@ -34,6 +34,8 @@ body {
   background-color: #5E6680;
   color: white; }
 
+
+
 .modal-header {
   border: none; }
 
@@ -69,6 +71,23 @@ ul.breadcrumb li a {
 ul.breadcrumb li a:hover {
   color: #01447e;
   text-decoration: underline;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .print-container, .print-container * {
+    visibility: visible;
+  }
+
+  .print-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=custom-admin.css.map */

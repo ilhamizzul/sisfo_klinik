@@ -31,4 +31,10 @@
 			$('.form-edit').attr('action', '<?php echo base_url() ?>data_obat/edit_obat/' + data.id_obat);
 		})
 	}
+
+	function delete_data_obat(id_obat) {
+		$.getJSON('<?php echo base_url() ?>data_obat/get_data_obat_by_id/' + id_obat, function (data) {
+			$('#delete_data_obat').attr('href', '<?php echo base_url() ?>data_obat/delete_obat/' + data.id_obat);
+		})
+	}
 </script>

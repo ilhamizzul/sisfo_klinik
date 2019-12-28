@@ -82,20 +82,22 @@ class Data_pasien extends CI_Controller {
 		<h5 style="margin-top:-30px">'.$data[1]->waktu_transaksi.'</h5>
 		<table class="display table table-bordered">
                         <tr>
-                            <th>Nama Item</th>
-                            <th>Jumlah Item</th>
+                            <th>Nama Obat</th>
+                            <th>Rincian Obat</th>
+                            <th>Jumlah Obat</th>
                             <th>Harga</th>
                         </tr>';
         foreach ($data[0] as $row) {
         	$output .= '<tr>
+        					<td>'.$row->nama_obat.'</td>
         					<td>'.$row->rincian_obat.'</td>
         					<td>'.$row->jumlah.'</td>
         					<td>Rp. '.$row->harga.'</td>
         				</tr>';
         }
         $output .= '<tr>
-                        <th colspan="2">Total Harga</th>
-                        <th>Rp.'.$data[1]->harga_total.'</th>
+                        <th colspan="3">Total Harga</th>
+                        <th>Rp. '.$data[1]->harga_total.'</th>
                     </tr>
                 </table>';
 		echo $output;        

@@ -42,6 +42,9 @@
 				$('#item_buy_list').append(
 					'<tr>' + 
 						'<td class="col-md-6">' + data.nama_obat + '</td>'+
+						'<td>'+
+							'<input type="text">'+
+						'</td>'+
 						'<td class="col-md-2 input_n_obat">'+
 							'<input id="'+data.id_obat+'_n" type="number" min="1" value="1" max="'+data.sisa_stok+'">'+
 						'</td>'+

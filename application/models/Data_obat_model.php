@@ -8,6 +8,7 @@ class Data_obat_model extends CI_Model {
 		return $query = $this->db->select('tb_obat.id_obat, nama_obat, harga_jual, harga_beli, sisa_stok')
 						->join('tb_stok_obat', 'tb_stok_obat.id_obat = tb_obat.id_obat')
 						->where("DATE_FORMAT(bulan,'%Y-%m')", date('Y-m'))
+						->where('delete_status', 'false')
 						->get('tb_obat')
 						->result();
 		// if ($query->num_rows() > 0) {
@@ -42,6 +43,7 @@ class Data_obat_model extends CI_Model {
 			$this->db->insert('tb_stok_obat', $recap);
 			$i++;	
 		}
+		return TRUE;
 		
 	}
 
@@ -152,6 +154,22 @@ class Data_obat_model extends CI_Model {
 		} else {
 			return FALSE;
 		}	
+	}
+
+	public function delete_obat($id_obat)
+	{
+		$data = array(
+			'delete_status' => 'true', 
+		);
+
+		$this->db->where('id_obat', $id_obat)->update('tb_obat', $data);
+
+		if ($this->db->affected_rows() > 0) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+		
 	}
 
 }
