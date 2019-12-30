@@ -11,9 +11,25 @@ class Transaksi extends CI_Controller {
 
 	public function index()
 	{
+		
+	}
+
+	public function detail_transaksi($id_pemeriksaan)
+	{
 		$data['main_view'] = 'transaksi_view';
 		$data['JSON'] = 'JSON/transaksi_JSON';
 		$this->load->view('index', $data);
+	}
+
+	public function save_transaksi($id_pemeriksaan)
+	{
+		$hargatotal = $this->input->post('harga_total');
+		$datatable = $this->input->post('datatable');
+		if ($this->transaksi_model->add_transaksi($id_pemeriksaan, $hargatotal, $datatable) == TRUE) {
+		} else {
+			$this->session->set_flashdata('failed', 'GAGAL');
+			redirect('transaksi/detail_transaksi/'.$id_pemeriksaan);
+		}
 	}
 
 	public function get_data()

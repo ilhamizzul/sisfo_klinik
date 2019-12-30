@@ -34,7 +34,7 @@ class Data_obat_model extends CI_Model {
 		foreach ($id_obat as $data) {
 			$stock = $this->get_last_month_stok_obat_by_id($id_obat[$i]->id_obat);
 			$recap = array(
-				'id_obat' 		=> $id_obat[$i]->id_obat, 
+				'id_obat' 		=> $id_obat[$i]->id_obat,
 				'bulan' 		=> date('Y-m-d'), 
 				'stok_masuk' 	=> '0', 
 				'sisa_stok'		=> $stock->sisa_stok, 
@@ -80,10 +80,11 @@ class Data_obat_model extends CI_Model {
 	public function tambah_data_obat()
 	{
 		$data = array(
-			'id_obat' 	=> $this->input->post('kode_obat'), 
+			'id_obat' 		=> $this->input->post('kode_obat'), 
 			'nama_obat' 	=> $this->input->post('nama_obat'), 
 			'harga_jual' 	=> $this->input->post('harga_jual'), 
-			'harga_beli' 	=> $this->input->post('harga_beli')
+			'harga_beli' 	=> $this->input->post('harga_beli'),
+			'delete_status' => 'false'
 		);
 
 		$this->db->insert('tb_obat', $data);

@@ -6,15 +6,15 @@
             <a data-toggle="modal" data-target="#modalTambah" class="btn btn-default">Tambah Data Pemeriksaan</a>
         </div>
         <div class="panel-body table-responsive">
-            <table class="display table table-hover dataTable js-exportable" id="dataTable">
+            <table class="display table table-hover dataTable js-exportable">
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th class="no">No</th>
                         <th>Tanggal Pemeriksaan</th>
                         <th>Hasil Pemeriksaan</th>
                         <th>Diagnosis</th>
                         <th>Terapi</th>
-                        <th>Opsi</th>
+                        <th class="opsi">Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,17 +24,17 @@
                             foreach ($data_pemeriksaan as $data) {
                                 echo '
                                     <tr>
-                                        <td>'.$no++.'</td>
+                                        <td class="no">'.$no++.'</td>
                                         <td>'.date("d-m-Y", strtotime($data->tanggal_pemeriksaan)).'</td>
                                         <td>'.$data->hasil_pemeriksaan.'</td>
                                         <td>'.$data->diagnosis.'</td>
                                         <td>'.$data->terapi.'</td>
-                                        <td>
+                                        <td class="opsi">
                                             <a data-toggle="modal" style="width:100%" data-target="#modalEdit" onclick="edit_pemeriksaan('.$data->id_pemeriksaan.')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>';
                                             if ($data->status_transaksi == 'sudah') {
                                                 echo '<a data-toggle="modal" style="width:100%" data-target="#modalNota" onclick="get_nota('.$data->id_pemeriksaan.')" class="btn btn-xs btn-info"><i class="fa fa-book"></i></a>';    
                                             } else {
-                                                echo '<a href="'.base_url().'transaksi" style="width:100%" class="btn btn-xs btn-success"><i class="fa fa-dollar"></i></a>';    
+                                                echo '<a href="'.base_url().'transaksi/detail_transaksi/'.$data->id_pemeriksaan.'" style="width:100%" class="btn btn-xs btn-success"><i class="fa fa-dollar"></i></a>';    
                                             }                                                            
                                             echo '<a data-toggle="modal" style="width:100%" data-target="#modalHapus" onclick="delete_pemeriksaan('.$data->id_pemeriksaan.')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                                         </td>
@@ -125,7 +125,7 @@
                             <h3 class="panel-title">Edit Data Pemeriksaan</h3>
                         </div>
                         <div class="panel-body">
-                            <form class="form-tambah" method="POST" action="<?php echo base_url() ?>data_pasien/tambah_data_pemeriksaan/<?php echo $this->uri->segment(3) ?>/<?php echo $this->uri->segment(4) ?>">
+                            <form class="form-edit" method="POST" action="">
                                 <div class="form-group">
                                     <textarea style="resize:vertical" class="form-control" id="hasil_pemeriksaan" placeholder="Hasil Pemeriksaan. . ." name="hasil_pemeriksaan" rows="4"></textarea>
                                 </div>
@@ -142,7 +142,8 @@
             </div>
             <div class="modal-footer">
                 <a href="" class="btn btn-danger" data-dismiss="modal">Cancel</a>
-                <a href="" id="edit_data_pemeriksaan" class="btn btn-danger">UBAH</a>
+                <!-- <a href="" id="edit_data_pemeriksaan" class="btn btn-default">UBAH</a> -->
+                <input type="button" value="UBAH" class="btn btn-default" id="edit_data_pemeriksaan">
             </div>
         </div>
     </div>

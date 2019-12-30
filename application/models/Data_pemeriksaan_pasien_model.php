@@ -60,7 +60,8 @@ class Data_pemeriksaan_pasien_model extends CI_Model {
 			'diagnosis' => $this->input->post('diagnosis'),
 			'terapi' => $this->input->post('terapi'),
 			'tanggal_pemeriksaan' => date('Y-m-d'),
-			'id_pasien' => $id
+			'id_pasien' => $id,
+			'status_transaksi' => 'belum'
 		);
 
 		$this->db->insert('tb_pemeriksaan', $data);

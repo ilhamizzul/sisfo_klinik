@@ -12,13 +12,13 @@
                             <table class="display table table-hover dataTable js-exportable" id="dataTable">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th class="no">No</th>
                                         <th>Nama Pasien</th>
                                         <th>Alamat Pasien</th>
                                         <th>Nomor Telepon</th>
                                         <th>Tempat, Tanggal Lahir</th>
                                         <th>Nama Kepala Keluarga</th>
-                                        <th>Opsi</th>
+                                        <th class="opsi">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

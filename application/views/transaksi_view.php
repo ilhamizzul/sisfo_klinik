@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                         <th colspan="4" class="text-right">
-                            <a class="btn btn-md btn-info" id="transaksi_submit" disabled>Submit</a>
+                            <button type="button" class="btn btn-md btn-info" id="transaksi_submit" disabled>Submit</a>
                         </th>
                     </tr>
                 </tbody>

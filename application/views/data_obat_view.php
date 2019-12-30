@@ -17,7 +17,7 @@
                                         <th class="col-md-2">Stok Obat</th>
                                         <th class="col-md-2">Harga Jual</th>
                                         <th class="col-md-2">Harga Beli</th>
-                                        <th class="col-md-1">Opsi</th>
+                                        <th class="col-md-1 opsi">Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

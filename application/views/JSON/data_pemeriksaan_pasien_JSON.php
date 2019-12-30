@@ -4,7 +4,11 @@
 			$('.form-tambah').submit();
 		});
 
-		document.title = "Sisfo Klinik | Data Pemeriksaan"
+		$('#edit_data_pemeriksaan').click(function() {
+			$('.form-edit').submit();
+		});
+
+		document.title = "Sisfo Klinik | Data Pemeriksaan <?php echo urldecode($this->uri->segment(4)) ?>"
 	})
 
 	function delete_pemeriksaan($id_pemeriksaan) {
@@ -18,7 +22,7 @@
 			$('#hasil_pemeriksaan').val(data.hasil_pemeriksaan);
 			$('#diagnosis').val(data.diagnosis);
 			$('#terapi').val(data.terapi);
-			$('#edit_data_pemeriksaan').attr('href', '<?php echo base_url() ?>data_pasien/edit_data_pemeriksaan/' + data.id_pemeriksaan + '/' + data.id_pasien + '/ <?php echo urldecode($this->uri->segment(4)) ?>');
+			$('.form-edit').attr('action', '<?php echo base_url() ?>data_pasien/edit_data_pemeriksaan/' + data.id_pemeriksaan + '/' + data.id_pasien + '/ <?php echo urldecode($this->uri->segment(4)) ?>');
 		})
 	}
 

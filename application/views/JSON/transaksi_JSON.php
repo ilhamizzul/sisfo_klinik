@@ -41,6 +41,7 @@
 				let data = JSON.parse(result);
 				$('#item_buy_list').append(
 					'<tr>' + 
+						'<td style="display:none;">'+ data.id_obat +'</td>'+
 						'<td class="col-md-6">' + data.nama_obat + '</td>'+
 						'<td>'+
 							'<input type="text">'+
@@ -85,4 +86,48 @@
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
 	}
+
+	$('#transaksi_submit').click(function() {
+			
+			var table_data = [];
+
+			$('#item_buy_list tr').each(function(row, tr) {
+				
+				if ($(tr).find('td:eq(0)').text() == '') {
+
+				} else {
+					var price = $(tr).find("td:eq(4)").text().replace(/[^0-9]/gi, '');
+					var sub = {
+						'id_obat' : $(tr).find('td:eq(0)').text(),
+						'rincian_obat' : $(tr).find("td:eq(2) input[type='text']").val(),
+						'jumlah' :  $(tr).find("td:eq(3) input[type='number']").val(),
+						'harga' : parseInt(price, 10) * $(tr).find("td:eq(3) input[type='number']").val()
+					};
+
+					table_data.push(sub);
+					
+				}
+
+			});
+			var total_price = $('#totalHarga').text().replace(/[^0-9]/gi, '');
+			console.log(table_data);
+			console.log(total_price);
+			// function xxxx() {
+				$.ajax({
+					data: {'harga_total' : total_price, 'datatable' : table_data},
+					url: '<?php echo base_url(); ?>transaksi/save_transaksi/<?php echo $this->uri->segment(3) ?>',
+					type: 'POST',
+					success : function(result) {
+						window.history.go(-1);
+						alert('Insert berhasil');
+					// 	<?php
+					// 		// $this->session->set_flashdata('failed', 'GAGAL');
+					// 		// redirect('transaksi/detail_transaksi/'.$id_pemeriksaan);
+					// 	?>
+					
+					}
+				});
+				
+			// };
+		});
 </script>

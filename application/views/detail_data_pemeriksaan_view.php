@@ -19,7 +19,7 @@
                             <table class="display table table-hover dataTable js-exportable" id="dataTable">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th class="no">No</th>
                                         <th>Nama Pasien</th>
                                         <th>Tanggal Pemeriksaan</th>
                                         <th>Hasil Pemeriksaan</th>
@@ -35,7 +35,7 @@
                                             foreach ($data_pemeriksaan as $data) {
                                                 echo '
                                                     <tr>
-                                                        <td>'.$no++.'</td>
+                                                        <td class="no">'.$no++.'</td>
                                                         <td>'.$data->nama_pasien.'</td>
                                                         <td>'.date("d-m-Y", strtotime($data->tanggal_pemeriksaan)).'</td>
                                                         <td>'.$data->hasil_pemeriksaan.'</td>
