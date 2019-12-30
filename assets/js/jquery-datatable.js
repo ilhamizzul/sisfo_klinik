@@ -7,6 +7,9 @@ $(function () {
     $('.js-exportable').DataTable({
         dom: 'Bfrtip',
         responsive: true,
+        // "language": {
+        //     "emptyTable":     "Tidak Ada Data pada Tabel ini"
+        // },
         buttons: [
             {
                 extend: 'pdfHtml5',
@@ -48,7 +51,7 @@ $(function () {
                     // Left padding of the cell
                     objLayout['paddingLeft'] = function(i) { return 4; };
                     // Right padding of the cell
-                    objLayout['paddingRight'] = function(i) { return 4; };
+                    objLayout['paddingRight'] = function(i) { return 20; };
                     // Inject the object in the document
                     doc.content[1].layout = objLayout;
                 }

@@ -12,6 +12,8 @@ class Data_pemeriksaan_pasien_model extends CI_Model {
 		// 			->get()
 		// 			->result();
 		return $this->db->where('id_pasien', $id_pasien)
+						->where('delete_status', 'false')
+						->order_by('id_pemeriksaan', 'desc')
 						->get('tb_pemeriksaan')
 						->result();
 	}
@@ -25,7 +27,8 @@ class Data_pemeriksaan_pasien_model extends CI_Model {
 
 	public function delete_data_pemeriksaan_pasien($id)
 	{
-		$this->db->where('id_pemeriksaan', $id)->delete('tb_pemeriksaan');
+		$data = array('delete_status' => 'true' );
+		$this->db->where('id_pemeriksaan', $id)->update('tb_pemeriksaan', $data);
 
 		if ($this->db->affected_rows() > 0) {
 			return TRUE;
@@ -61,7 +64,8 @@ class Data_pemeriksaan_pasien_model extends CI_Model {
 			'terapi' => $this->input->post('terapi'),
 			'tanggal_pemeriksaan' => date('Y-m-d'),
 			'id_pasien' => $id,
-			'status_transaksi' => 'belum'
+			'status_transaksi' => 'belum',
+			'delete_status' => 'false'
 		);
 
 		$this->db->insert('tb_pemeriksaan', $data);

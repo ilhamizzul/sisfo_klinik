@@ -5,7 +5,7 @@ class Data_pasien_model extends CI_Model {
 
 	public function get_data_pasien()
 	{
-		return $this->db->get('tb_pasien')->result();
+		return $this->db->where('delete_status', 'false')->get('tb_pasien')->result();
 	}
 
 	public function get_data_pasien_by_id($id)
@@ -21,7 +21,8 @@ class Data_pasien_model extends CI_Model {
 			'nomor_telepon' => $this->input->post('nomor_telepon'), 
 			'tempat_lahir' => $this->input->post('tempat_lahir'), 
 			'tanggal_lahir' => $this->input->post('tanggal_lahir'), 
-			'nama_kepala_keluarga' => $this->input->post('nama_kepala_keluarga') 
+			'nama_kepala_keluarga' => $this->input->post('nama_kepala_keluarga'),
+			'delete_status' => 'false'
 		);
 
 		$this->db->insert('tb_pasien', $data);
@@ -56,7 +57,9 @@ class Data_pasien_model extends CI_Model {
 
 	public function delete_data_pasien($id)
 	{
-		$this->db->where('id_pasien', $id)->delete('tb_pasien');
+		$data = array('delete_status' => 'true' );
+
+		$this->db->where('id_pasien', $id)->update('tb_pasien', $data);
 
 		if ($this->db->affected_rows() > 0) {
 			return TRUE;

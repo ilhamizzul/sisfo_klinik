@@ -9,12 +9,12 @@
             <table class="display table table-hover dataTable js-exportable">
                 <thead>
                     <tr>
-                        <th class="no">No</th>
-                        <th>Tanggal Pemeriksaan</th>
-                        <th>Hasil Pemeriksaan</th>
-                        <th>Diagnosis</th>
-                        <th>Terapi</th>
-                        <th class="opsi">Opsi</th>
+                        <th class="no col-md-1">No</th>
+                        <th class="col-md-1">Tanggal Pemeriksaan</th>
+                        <th class="col-md-3">Hasil Pemeriksaan</th>
+                        <th class="col-md-3">Diagnosis</th>
+                        <th class="col-md-3">Terapi</th>
+                        <th class="opsi col-md-1">Opsi</th>
                     </tr>
                 </thead>
                 <tbody>

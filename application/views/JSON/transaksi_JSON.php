@@ -26,6 +26,21 @@
 		})
 	});
 
+	function int(value) {
+    	return parseInt(value);
+	}
+
+	function checkValue(sender) {
+	    let min = sender.min;
+	    let max = sender.max;
+	    let value = int(sender.value);
+	    if (value>max) {
+	        sender.value = min;
+	    } else if (value<min) {
+	        sender.value = max;
+	    }
+	}
+
 	function add_item(id_obat) {
 		// Enable submit button when first item is added
 		if ($("#item_buy_list").children().length === 0) {
@@ -47,7 +62,7 @@
 							'<input type="text">'+
 						'</td>'+
 						'<td class="col-md-2 input_n_obat">'+
-							'<input id="'+data.id_obat+'_n" type="number" min="1" value="1" max="'+data.sisa_stok+'">'+
+							'<input id="'+data.id_obat+'_n" type="number" min="1" value="1" max="'+data.sisa_stok+'" oninput="checkValue(this);">'+
 						'</td>'+
 						'<td class="col-md-4"> Rp. ' + numberWithCommas(data.harga_jual) + 
 							'<input type="hidden" id="harga_'+data.id_obat+'_n" value="'+data.harga_jual+'">'+
